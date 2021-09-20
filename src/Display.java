@@ -38,8 +38,10 @@ public class Display {
         while (guess != numGenerator.randomNum) {
             logic.biggerOrSmaller(numGenerator.randomNum, guess);
             enterAGuess();
+            logic.numberOfGuesses();;
+
         }
-        System.out.println("Congrats, you have guessed correctly!");
+        System.out.println("Congrats, you have guessed it correctly in " + logic.count + " tries!");
     }
 
 
