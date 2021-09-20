@@ -28,10 +28,9 @@ public class Display {
 
     public void enterAGuess() {
         System.out.println("Please enter your guess:");
-
         Scanner scan = new Scanner(System.in);
-        this.guess = scan.nextInt();
-        System.out.println("random number in enterAGuess " + numGenerator.randomNum);
+        guess = scan.nextInt();
+        this.guess = validator.validRange(guess);
 
     }
 
