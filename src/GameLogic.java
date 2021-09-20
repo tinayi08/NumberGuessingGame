@@ -9,7 +9,8 @@ public class GameLogic {
         guessIsWrong("bigger.");
 
     }
-    public void guessIsWrong(String biggerOrSmaller) {
+
+    private void guessIsWrong(String biggerOrSmaller) {
         System.out.println("Your guess is incorrect, my number is " + biggerOrSmaller + " Let's try again.");
     }
 

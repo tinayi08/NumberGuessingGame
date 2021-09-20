@@ -2,10 +2,10 @@ import java.util.Scanner;
 
 public class Display {
 
-    Validator validator;
-    NumberGenerator numGenerator;
-    GameLogic logic;
-    int guess;
+    private Validator validator;
+    private NumberGenerator numGenerator;
+    private GameLogic logic;
+    private int guess;
 
     public Display() {
         validator = new Validator();
@@ -20,13 +20,13 @@ public class Display {
         result();
     }
 
-    public void intro() {
+    private void intro() {
         System.out.println("Welcome to the random number game. " +
                 "I have selected number between 1 and 100. " +
                 "Let's see if you can guess it.");
     }
 
-    public void enterAGuess() {
+    private void enterAGuess() {
         System.out.println("Please enter your guess:");
         Scanner scan = new Scanner(System.in);
         guess = scan.nextInt();
@@ -34,7 +34,7 @@ public class Display {
 
     }
 
-    public void result() {
+    private void result() {
         while (guess != numGenerator.randomNum) {
             logic.biggerOrSmaller(numGenerator.randomNum, guess);
             enterAGuess();
