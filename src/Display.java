@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Display {
@@ -29,8 +30,18 @@ public class Display {
     private void enterAGuess() {
         System.out.println("Please enter your guess:");
         Scanner scan = new Scanner(System.in);
-        guess = scan.nextInt();
-        this.guess = validator.validRange(guess);
+        boolean isValid = false;
+        while (!isValid) {
+            try {
+                guess = scan.nextInt();
+                this.guess = validator.validRange(guess);
+                isValid = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Please enter a valid entry:");
+                scan.next();
+            }
+        }
+
 
     }
 

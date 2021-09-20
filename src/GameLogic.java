@@ -7,7 +7,6 @@ public class GameLogic {
             guessIsWrong("smaller.");
         } else
         guessIsWrong("bigger.");
-
     }
 
     private void guessIsWrong(String biggerOrSmaller) {
@@ -16,7 +15,6 @@ public class GameLogic {
 
     public int numberOfGuesses() {
         count++;
-
         return this.count;
 
     }
