@@ -21,14 +21,21 @@ public class Display {
         result();
     }
 
-    private void intro() {
+    public void intro() {
         System.out.println("Welcome to the random number game. " +
                 "I have selected number between 1 and 100. " +
                 "Let's see if you can guess it.");
     }
 
+    public String introReturnStr() {
+        String intro = "Welcome to the random number game. " +
+                "I have selected number between 1 and 100. " +
+                "Let's see if you can guess it.";
+        return intro;
+    }
+
     private void enterAGuess() {
-        System.out.println("Please enter your guess:");
+        System.out.println("\nPlease enter your guess:");
         Scanner scan = new Scanner(System.in);
         boolean isValid = false;
         while (!isValid) {
