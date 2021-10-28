@@ -1,13 +1,18 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class GUI {
+public class GUI implements ActionListener {
 
     private static JFrame frame;
     private static JLabel label;
     private static JPanel panel;
     private Display display;
-    private static GridBagConstraints c;
+    private static JButton guess;
+    private static JLabel enterGuess;
+    private static JLabel numOfGuesses;
+
 
     public GUI() {
         display = new Display();
@@ -17,36 +22,41 @@ public class GUI {
         GUI start = new GUI();
 
         frame = new JFrame();
-        panel = new JPanel(new GridBagLayout());
-        panel.setBorder(BorderFactory.createEmptyBorder(30,200,10,200));
-        c = new GridBagConstraints();
-        c.insets = new Insets(10,10,10,10);
-        frame.add(panel);
         frame.setSize(600, 300);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        panel = new JPanel();
+        frame.add(panel);
+        //panel.setBorder(BorderFactory.createEmptyBorder(30,30,10,30)); //unsure if necessary
+
+//        panel.setLayout(new GridLayout(0, 1));
+        panel.setLayout(null);
+
+        frame.setTitle("Number Guessing Game");
+//        frame.pack();
+//
         start.intro();
         start.enterAGuess();
+//        start.numOfGuesses();
 
-        frame.setVisible(true);
+        //frame.add(panel,BorderLayout.CENTER);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true); // should be at the end
+
+
+
     }
 
     public void intro() {
-        //JLabel intro = new JLabel("<html>" + display.introReturnStr() + "</html>");
 
         JTextArea introText = new JTextArea();
         introText.setText(display.introReturnStr());
         introText.setWrapStyleWord(true);
         introText.setLineWrap(true);
-        introText.setColumns(1000);
         introText.setOpaque(false);
         introText.setEditable(false);
         introText.setFocusable(false);
+        introText.setBounds(200, 50, 250,100);
+        panel.add(introText);
 
-        //panel.add(introText, BorderLayout.CENTER);
-
-        c.gridx = 0;
-        c.gridy = 1;
-        panel.add(introText, c);
 
 
     }
@@ -54,23 +64,38 @@ public class GUI {
     public void enterAGuess() {
 
         JTextArea promptText = new JTextArea();
+        //enterGuess = new JLabel("Enter a guess:");
         promptText.setText("Please enter a guess:");
         promptText.setWrapStyleWord(true);
         promptText.setLineWrap(true);
         promptText.setOpaque(false);
         promptText.setEditable(false);
         promptText.setFocusable(false);
+        promptText.setBounds(200, 150, 150,25);
         panel.add(promptText);
-        JButton guess = new JButton("Guess");
+        //enterGuess.setBounds(10, 20, 80, 25);
 
-        c.gridx = 0;
-        c.gridy = 2;
-        panel.add(promptText,c);
-        c.gridx = 0;
-        c.gridy = 3;
-        panel.add(guess,c);
+        //panel.add(enterGuess);
+
+        guess = new JButton("Guess");
+        JTextField guessField = new JTextField();
+        guessField.setBounds(330, 145, 100, 25);
+        panel.add(guess);
+        panel.add(guessField);
+
 
     }
 
+    public void numOfGuesses() {
+        guess.addActionListener(this);
+        numOfGuesses = new JLabel("Number of Guesses: 0");
+        panel.add(numOfGuesses);
+    }
 
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        display.logic.count++;
+        numOfGuesses.setText("Number of Guesses: " + display.logic.count);
+    }
 }

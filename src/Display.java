@@ -5,7 +5,7 @@ public class Display {
 
     private Validator validator;
     private NumberGenerator numGenerator;
-    private GameLogic logic;
+    public GameLogic logic;
     private int guess;
 
     public Display() {

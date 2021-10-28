@@ -1,6 +1,14 @@
 public class GameLogic {
 
-    int count = 1;
+    int count = 0;
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public int getCount() {
+        return count;
+    }
 
     public void biggerOrSmaller(int randomNumber, int guess) {
         if (guess > randomNumber) {
