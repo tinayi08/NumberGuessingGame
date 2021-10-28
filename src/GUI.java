@@ -22,7 +22,7 @@ public class GUI implements ActionListener {
         GUI start = new GUI();
 
         frame = new JFrame();
-        frame.setSize(600, 300);
+        frame.setSize(400, 300);
         panel = new JPanel();
         frame.add(panel);
         //panel.setBorder(BorderFactory.createEmptyBorder(30,30,10,30)); //unsure if necessary
@@ -35,7 +35,7 @@ public class GUI implements ActionListener {
 //
         start.intro();
         start.enterAGuess();
-//        start.numOfGuesses();
+        start.numOfGuesses();
 
         //frame.add(panel,BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,7 +54,7 @@ public class GUI implements ActionListener {
         introText.setOpaque(false);
         introText.setEditable(false);
         introText.setFocusable(false);
-        introText.setBounds(200, 50, 250,100);
+        introText.setBounds(75, 50, 250,100);
         panel.add(introText);
 
 
@@ -64,22 +64,19 @@ public class GUI implements ActionListener {
     public void enterAGuess() {
 
         JTextArea promptText = new JTextArea();
-        //enterGuess = new JLabel("Enter a guess:");
         promptText.setText("Please enter a guess:");
         promptText.setWrapStyleWord(true);
         promptText.setLineWrap(true);
         promptText.setOpaque(false);
         promptText.setEditable(false);
         promptText.setFocusable(false);
-        promptText.setBounds(200, 150, 150,25);
+        promptText.setBounds(75, 150, 150,25);
         panel.add(promptText);
-        //enterGuess.setBounds(10, 20, 80, 25);
-
-        //panel.add(enterGuess);
 
         guess = new JButton("Guess");
         JTextField guessField = new JTextField();
-        guessField.setBounds(330, 145, 100, 25);
+        guessField.setBounds(205, 145, 100, 25);
+        guess.setBounds(145,185, 100, 25);
         panel.add(guess);
         panel.add(guessField);
 
@@ -89,6 +86,7 @@ public class GUI implements ActionListener {
     public void numOfGuesses() {
         guess.addActionListener(this);
         numOfGuesses = new JLabel("Number of Guesses: 0");
+        numOfGuesses.setBounds(125, 225, 250, 25);
         panel.add(numOfGuesses);
     }
 
