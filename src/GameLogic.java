@@ -17,8 +17,13 @@ public class GameLogic {
         guessIsWrong("bigger.");
     }
 
+
     private void guessIsWrong(String biggerOrSmaller) {
         System.out.println("Your guess is incorrect, my number is " + biggerOrSmaller + " Let's try again.");
+    }
+
+    public String guessIsWrongGUI(String biggerOrSmaller) {
+        return "Your guess is incorrect, my number is " + biggerOrSmaller + " Let's try again.";
     }
 
     public int numberOfGuesses() {

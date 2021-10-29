@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Display {
 
     private Validator validator;
-    private NumberGenerator numGenerator;
+    public NumberGenerator numGenerator;
     public GameLogic logic;
     private int guess;
 
@@ -59,8 +59,17 @@ public class Display {
             logic.numberOfGuesses();;
 
         }
-        System.out.println("Congrats, you have guessed it correctly in " + logic.count + " tries!");
+        System.out.println("Congrats, you have guessed it correctly in " + logic.getCount() + " tries!");
     }
 
+    public void result(int guess) {
+        while (guess != numGenerator.randomNum) {
+            logic.biggerOrSmaller(numGenerator.randomNum, guess);
+            enterAGuess();
+            logic.numberOfGuesses();;
+
+        }
+        System.out.println("Congrats, you have guessed it correctly in " + logic.getCount() + " tries!");
+    }
 
 }

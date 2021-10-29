@@ -2,7 +2,8 @@ import java.util.Random;
 
 public class NumberGenerator {
 
-    static int randomNum;
+    //static int randomNum;
+    int randomNum;
 
     public int randomNumber() {
         Random random = new Random();

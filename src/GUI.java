@@ -1,18 +1,19 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GUI implements ActionListener {
-
+    //when to do static vs non static
     private static JFrame frame;
-    private static JLabel label;
     private static JPanel panel;
     private Display display;
     private static JButton guess;
-    private static JLabel enterGuess;
     private static JLabel numOfGuesses;
-
+    private JTextField guessField;
+    private static JTextArea resultText = new JTextArea("");
+    private static JFrame resultFrame;
+    private static JPanel resultPanel;
+    private int numGuessed;
 
     public GUI() {
         display = new Display();
@@ -22,26 +23,20 @@ public class GUI implements ActionListener {
         GUI start = new GUI();
 
         frame = new JFrame();
-        frame.setSize(400, 300);
+        frame.setSize(400, 500);
         panel = new JPanel();
         frame.add(panel);
-        //panel.setBorder(BorderFactory.createEmptyBorder(30,30,10,30)); //unsure if necessary
 
-//        panel.setLayout(new GridLayout(0, 1));
         panel.setLayout(null);
 
         frame.setTitle("Number Guessing Game");
-//        frame.pack();
-//
+
         start.intro();
         start.enterAGuess();
         start.numOfGuesses();
 
-        //frame.add(panel,BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true); // should be at the end
-
-
 
     }
 
@@ -56,8 +51,6 @@ public class GUI implements ActionListener {
         introText.setFocusable(false);
         introText.setBounds(75, 50, 250,100);
         panel.add(introText);
-
-
 
     }
 
@@ -74,12 +67,11 @@ public class GUI implements ActionListener {
         panel.add(promptText);
 
         guess = new JButton("Guess");
-        JTextField guessField = new JTextField();
+        guessField = new JTextField();
         guessField.setBounds(205, 145, 100, 25);
         guess.setBounds(145,185, 100, 25);
         panel.add(guess);
         panel.add(guessField);
-
 
     }
 
@@ -91,9 +83,35 @@ public class GUI implements ActionListener {
     }
 
 
+    public void results() {
+       // resultText = new JTextArea("");
+        resultText.setWrapStyleWord(true);
+        resultText.setLineWrap(true);
+        resultText.setOpaque(false);
+        resultText.setEditable(false);
+        resultText.setFocusable(false);
+        resultText.setBounds(75, 255, 250, 100);
+        panel.add(resultText);
+
+        if (numGuessed > display.numGenerator.randomNumber()) {
+            resultText.setText("Your guess is incorrect, my number is smaller. Let's try again.");
+        } else if (numGuessed < display.numGenerator.randomNumber()){
+            resultText.setText("Your guess is incorrect, my number is larger. Let's try again.");
+        } else {
+            resultText.setText("Congrats, you have guessed it correctly.");
+        }
+
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
+        resultText.setText("");
+        numGuessed = Integer.parseInt(guessField.getText());
+
+        results();
+
         display.logic.count++;
         numOfGuesses.setText("Number of Guesses: " + display.logic.count);
+
     }
 }

@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="375edd35-24a8-4e98-87f1-9c50d51cbd9b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/NumberGuessingGame/Display.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/NumberGuessingGame/Display.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/NumberGuessingGame/GUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/NumberGuessingGame/GUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/NumberGuessingGame/GameLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/NumberGuessingGame/GameLogic.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/NumberGuessingGame/NumberGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/NumberGuessingGame/NumberGenerator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Display.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NumberGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NumberGenerator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
