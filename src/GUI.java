@@ -5,6 +5,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 //TODO - add button for start over, quit, hint
+//TODO - TRy catch for invalid entry
 
 public class GUI implements ActionListener {
     //when to do static vs non static
@@ -12,8 +13,8 @@ public class GUI implements ActionListener {
     private static JPanel panel;
     private Display display;
     private static JButton guessButton;
-    private static JButton playAgain;
-    private static JButton quit;
+    private static JButton restartButton;
+    private static JButton quitButton;
     private static JLabel numOfGuessesLabel;
     private JTextField guessField;
     private static JTextArea resultText = new JTextArea("");
@@ -34,17 +35,25 @@ public class GUI implements ActionListener {
         panel.setLayout(null);
 
         frame.setTitle("Number Guessing Game");
-        start.display.numGenerator.randomNumber();
-        start.intro();
-        start.enterAGuess();
-        start.numOfGuesses();
-        start.playAgain();
+        start.startGame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true); // should be at the end
 
     }
 
-    private void intro() {
+    private void startGame() {
+        introSetUp();
+        enterAGuessSetUp();
+        numOfGuessesSetUp();
+        do {
+            display.numGenerator.randomNumber();
+            guessButton.addActionListener(this);
+            playAgain();
+        } while (restartGame());
+
+    }
+
+    private void introSetUp() {
 
         JTextArea introText = new JTextArea();
         introText.setText(display.introReturnStr());
@@ -58,7 +67,7 @@ public class GUI implements ActionListener {
 
     }
 
-    private void enterAGuess() {
+    private void enterAGuessSetUp() {
 
         JTextArea promptText = new JTextArea();
         promptText.setText("Please enter a guess:");
@@ -79,8 +88,8 @@ public class GUI implements ActionListener {
 
     }
 
-    private void numOfGuesses() {
-        guessButton.addActionListener(this);
+    private void numOfGuessesSetUp() {
+        //guessButton.addActionListener(this);
         numOfGuessesLabel = new JLabel("Number of Guesses: 0");
         numOfGuessesLabel.setBounds(125, 225, 250, 25);
         panel.add(numOfGuessesLabel);
@@ -103,27 +112,43 @@ public class GUI implements ActionListener {
         } else {
             resultText.setText("Congrats, you have guessed it correctly.");
             guessButton.setEnabled(false);
-            //playAgain();
-
         }
 
     }
 
 
     private void playAgain() {
-        playAgain = new JButton("Play Again");
-        quit = new JButton("Quit");
+        restartButton = new JButton("Play Again");
+        quitButton = new JButton("Quit");
 
-        playAgain.setBounds(75,300, 125, 25);
-        quit.setBounds(200,300, 125, 25);
-        panel.add(playAgain);
-        panel.add(quit);
-
+        restartButton.setBounds(75,300, 125, 25);
+        quitButton.setBounds(200,300, 125, 25);
+        panel.add(restartButton);
+        panel.add(quitButton);
         quitGame();
+
+    }
+
+    private boolean restartGame() {
+
+        restartButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                display.numGenerator.randomNumber();
+                display.logic.setCount(0);
+                guessButton.setEnabled(true);
+                resultText.setText("");
+                numOfGuessesLabel.setText("Number of Guesses: 0");
+            }
+        });
+        if (restartButton.isSelected()) {
+            return true;
+        }
+        return false;
     }
 
     private void quitGame() {
-        quit.addMouseListener(new MouseAdapter() {
+        quitButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 frame.dispose();
@@ -134,6 +159,7 @@ public class GUI implements ActionListener {
 
     private void count() {
         numOfGuessesLabel.setText("Number of Guesses: " + display.logic.numberOfGuesses());
+
     }
 
     @Override
