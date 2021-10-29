@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 //TODO - add button for start over, quit, hint
 
@@ -9,10 +11,10 @@ public class GUI implements ActionListener {
     private static JFrame frame;
     private static JPanel panel;
     private Display display;
-    private static JButton guess;
+    private static JButton guessButton;
     private static JButton playAgain;
     private static JButton quit;
-    private static JLabel numOfGuesses;
+    private static JLabel numOfGuessesLabel;
     private JTextField guessField;
     private static JTextArea resultText = new JTextArea("");
     private int numGuessed;
@@ -36,7 +38,7 @@ public class GUI implements ActionListener {
         start.intro();
         start.enterAGuess();
         start.numOfGuesses();
-
+        start.playAgain();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true); // should be at the end
 
@@ -68,20 +70,20 @@ public class GUI implements ActionListener {
         promptText.setBounds(75, 150, 150,25);
         panel.add(promptText);
 
-        guess = new JButton("Guess");
+        guessButton = new JButton("Guess");
         guessField = new JTextField();
         guessField.setBounds(205, 145, 100, 25);
-        guess.setBounds(145,185, 100, 25);
-        panel.add(guess);
+        guessButton.setBounds(145,185, 100, 25);
+        panel.add(guessButton);
         panel.add(guessField);
 
     }
 
     private void numOfGuesses() {
-        guess.addActionListener(this);
-        numOfGuesses = new JLabel("Number of Guesses: 0");
-        numOfGuesses.setBounds(125, 225, 250, 25);
-        panel.add(numOfGuesses);
+        guessButton.addActionListener(this);
+        numOfGuessesLabel = new JLabel("Number of Guesses: 0");
+        numOfGuessesLabel.setBounds(125, 225, 250, 25);
+        panel.add(numOfGuessesLabel);
     }
 
 
@@ -100,15 +102,13 @@ public class GUI implements ActionListener {
             resultText.setText("Your guess is incorrect, my number is larger. Let's try again.");
         } else {
             resultText.setText("Congrats, you have guessed it correctly.");
-            guess.setEnabled(false);
-            playAgain();
+            guessButton.setEnabled(false);
+            //playAgain();
 
         }
 
     }
-    private void disableGuessButton() {
 
-    }
 
     private void playAgain() {
         playAgain = new JButton("Play Again");
@@ -118,10 +118,22 @@ public class GUI implements ActionListener {
         quit.setBounds(200,300, 125, 25);
         panel.add(playAgain);
         panel.add(quit);
+
+        quitGame();
+    }
+
+    private void quitGame() {
+        quit.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                frame.dispose();
+                System.exit(0);
+            }
+        });
     }
 
     private void count() {
-        numOfGuesses.setText("Number of Guesses: " + display.logic.numberOfGuesses());
+        numOfGuessesLabel.setText("Number of Guesses: " + display.logic.numberOfGuesses());
     }
 
     @Override
