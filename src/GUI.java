@@ -10,6 +10,8 @@ public class GUI implements ActionListener {
     private static JPanel panel;
     private Display display;
     private static JButton guess;
+    private static JButton playAgain;
+    private static JButton quit;
     private static JLabel numOfGuesses;
     private JTextField guessField;
     private static JTextArea resultText = new JTextArea("");
@@ -98,13 +100,24 @@ public class GUI implements ActionListener {
             resultText.setText("Your guess is incorrect, my number is larger. Let's try again.");
         } else {
             resultText.setText("Congrats, you have guessed it correctly.");
-            correctGuess();
+            guess.setEnabled(false);
+            playAgain();
+
         }
 
     }
+    private void disableGuessButton() {
 
-    private void correctGuess() {
+    }
 
+    private void playAgain() {
+        playAgain = new JButton("Play Again");
+        quit = new JButton("Quit");
+
+        playAgain.setBounds(75,300, 125, 25);
+        quit.setBounds(200,300, 125, 25);
+        panel.add(playAgain);
+        panel.add(quit);
     }
 
     private void count() {
