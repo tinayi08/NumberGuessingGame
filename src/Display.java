@@ -72,4 +72,5 @@ public class Display {
         System.out.println("Congrats, you have guessed it correctly in " + logic.getCount() + " tries!");
     }
 
+
 }

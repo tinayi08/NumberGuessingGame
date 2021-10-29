@@ -13,8 +13,6 @@ public class GUI implements ActionListener {
     private static JLabel numOfGuesses;
     private JTextField guessField;
     private static JTextArea resultText = new JTextArea("");
-    private static JFrame resultFrame;
-    private static JPanel resultPanel;
     private int numGuessed;
 
     public GUI() {
@@ -42,7 +40,7 @@ public class GUI implements ActionListener {
 
     }
 
-    public void intro() {
+    private void intro() {
 
         JTextArea introText = new JTextArea();
         introText.setText(display.introReturnStr());
@@ -56,7 +54,7 @@ public class GUI implements ActionListener {
 
     }
 
-    public void enterAGuess() {
+    private void enterAGuess() {
 
         JTextArea promptText = new JTextArea();
         promptText.setText("Please enter a guess:");
@@ -77,7 +75,7 @@ public class GUI implements ActionListener {
 
     }
 
-    public void numOfGuesses() {
+    private void numOfGuesses() {
         guess.addActionListener(this);
         numOfGuesses = new JLabel("Number of Guesses: 0");
         numOfGuesses.setBounds(125, 225, 250, 25);
@@ -85,7 +83,7 @@ public class GUI implements ActionListener {
     }
 
 
-    public void results() {
+    private void results() {
         resultText.setWrapStyleWord(true);
         resultText.setLineWrap(true);
         resultText.setOpaque(false);
@@ -105,13 +103,12 @@ public class GUI implements ActionListener {
 
     }
 
-    public void correctGuess() {
+    private void correctGuess() {
 
     }
 
-    public void count() {
-        display.logic.count++;
-        numOfGuesses.setText("Number of Guesses: " + display.logic.count);
+    private void count() {
+        numOfGuesses.setText("Number of Guesses: " + display.logic.numberOfGuesses());
     }
 
     @Override
