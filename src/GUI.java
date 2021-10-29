@@ -30,7 +30,7 @@ public class GUI implements ActionListener {
         panel.setLayout(null);
 
         frame.setTitle("Number Guessing Game");
-
+        start.display.numGenerator.randomNumber();
         start.intro();
         start.enterAGuess();
         start.numOfGuesses();
@@ -84,7 +84,6 @@ public class GUI implements ActionListener {
 
 
     public void results() {
-       // resultText = new JTextArea("");
         resultText.setWrapStyleWord(true);
         resultText.setLineWrap(true);
         resultText.setOpaque(false);
@@ -93,9 +92,9 @@ public class GUI implements ActionListener {
         resultText.setBounds(75, 255, 250, 100);
         panel.add(resultText);
 
-        if (numGuessed > display.numGenerator.randomNumber()) {
+        if (numGuessed > display.numGenerator.getRandomNum()) {
             resultText.setText("Your guess is incorrect, my number is smaller. Let's try again.");
-        } else if (numGuessed < display.numGenerator.randomNumber()){
+        } else if (numGuessed < display.numGenerator.getRandomNum()){
             resultText.setText("Your guess is incorrect, my number is larger. Let's try again.");
         } else {
             resultText.setText("Congrats, you have guessed it correctly.");
@@ -112,6 +111,6 @@ public class GUI implements ActionListener {
 
         display.logic.count++;
         numOfGuesses.setText("Number of Guesses: " + display.logic.count);
-
+        System.out.println("num guessed " + numGuessed + "random number " + display.numGenerator.getRandomNum());
     }
 }
