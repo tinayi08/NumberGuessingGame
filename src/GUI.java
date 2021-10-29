@@ -113,7 +113,7 @@ public class GUI implements ActionListener {
             resultText.setText("Your guess is incorrect, my number is smaller. Let's try again.");
         } else if (numGuessed < display.numGenerator.getRandomNum()){
             resultText.setText("Your guess is incorrect, my number is larger. Let's try again.");
-        } else if (numGuessed == display.numGenerator.getRandomNum() && !hintText.equals("")) {
+        } else if (numGuessed == display.numGenerator.getRandomNum() && !hintButton.isEnabled()) {
             resultText.setText("Good job, cheater.");
             guessButton.setEnabled(false);
         } else {
@@ -126,18 +126,20 @@ public class GUI implements ActionListener {
         hintButton = new JButton("Hint");
         hintButton.setBounds(145,400, 100, 25);
         panel.add(hintButton);
+        hintText.setWrapStyleWord(true);
+        hintText.setLineWrap(true);
+        hintText.setOpaque(false);
+        hintText.setEditable(false);
+        hintText.setFocusable(false);
+        hintText.setBounds(155, 430, 250, 25);
+        panel.add(hintText);
 
         hintButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                hintText.setWrapStyleWord(true);
-                hintText.setLineWrap(true);
-                hintText.setOpaque(false);
-                hintText.setEditable(false);
-                hintText.setFocusable(false);
-                hintText.setBounds(155, 430, 250, 25);
-                panel.add(hintText);
+
                 hintText.setText("Answer: " + display.numGenerator.getRandomNum());
+                hintButton.setEnabled(false);
             }
         });
     }
@@ -165,6 +167,8 @@ public class GUI implements ActionListener {
                 resultText.setText("");
                 hintText.setText("");
                 numOfGuessesLabel.setText("Number of Guesses: 0");
+                guessField.setText(null);
+                hintButton.setEnabled(true);
             }
         });
         if (restartButton.isSelected()) {
