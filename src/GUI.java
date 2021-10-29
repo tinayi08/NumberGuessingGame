@@ -4,7 +4,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-//TODO - add button for hint
 //TODO - TRy catch for invalid entry
 
 public class GUI implements ActionListener {
@@ -51,7 +50,6 @@ public class GUI implements ActionListener {
             display.numGenerator.randomNumber();
             hint();
             guessButton.addActionListener(this);
-
             playAgain();
         } while (restartGame());
 
@@ -166,7 +164,7 @@ public class GUI implements ActionListener {
                 guessButton.setEnabled(true);
                 resultText.setText("");
                 hintText.setText("");
-                numOfGuessesLabel.setText("Number of Guesses: 0");
+                count(0);
                 guessField.setText(null);
                 hintButton.setEnabled(true);
             }
@@ -187,8 +185,8 @@ public class GUI implements ActionListener {
         });
     }
 
-    private void count() {
-        numOfGuessesLabel.setText("Number of Guesses: " + display.logic.numberOfGuesses());
+    private void count(int numOfGuesses) {
+        numOfGuessesLabel.setText("Number of Guesses: " + numOfGuesses);
 
     }
 
@@ -196,9 +194,8 @@ public class GUI implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         resultText.setText("");
         numGuessed = Integer.parseInt(guessField.getText());
-
         results();
-        count();
-        System.out.println("num guessed " + numGuessed + "random number " + display.numGenerator.getRandomNum());
+        count(display.logic.numberOfGuesses());
+
     }
 }
