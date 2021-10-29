@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//TODO - add button for start over, quit, hint
+
 public class GUI implements ActionListener {
     //when to do static vs non static
     private static JFrame frame;
@@ -98,8 +100,18 @@ public class GUI implements ActionListener {
             resultText.setText("Your guess is incorrect, my number is larger. Let's try again.");
         } else {
             resultText.setText("Congrats, you have guessed it correctly.");
+            correctGuess();
         }
 
+    }
+
+    public void correctGuess() {
+
+    }
+
+    public void count() {
+        display.logic.count++;
+        numOfGuesses.setText("Number of Guesses: " + display.logic.count);
     }
 
     @Override
@@ -108,9 +120,7 @@ public class GUI implements ActionListener {
         numGuessed = Integer.parseInt(guessField.getText());
 
         results();
-
-        display.logic.count++;
-        numOfGuesses.setText("Number of Guesses: " + display.logic.count);
+        count();
         System.out.println("num guessed " + numGuessed + "random number " + display.numGenerator.getRandomNum());
     }
 }
