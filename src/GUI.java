@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-//TODO - add button for start over, quit, hint
+//TODO - add button for hint
 //TODO - TRy catch for invalid entry
 
 public class GUI implements ActionListener {
@@ -18,7 +18,9 @@ public class GUI implements ActionListener {
     private static JLabel numOfGuessesLabel;
     private JTextField guessField;
     private static JTextArea resultText = new JTextArea("");
+    private static JTextArea hintText = new JTextArea("");
     private int numGuessed;
+    private static JButton hintButton;
 
     public GUI() {
         display = new Display();
@@ -47,7 +49,9 @@ public class GUI implements ActionListener {
         numOfGuessesSetUp();
         do {
             display.numGenerator.randomNumber();
+            hint();
             guessButton.addActionListener(this);
+
             playAgain();
         } while (restartGame());
 
@@ -109,13 +113,34 @@ public class GUI implements ActionListener {
             resultText.setText("Your guess is incorrect, my number is smaller. Let's try again.");
         } else if (numGuessed < display.numGenerator.getRandomNum()){
             resultText.setText("Your guess is incorrect, my number is larger. Let's try again.");
+        } else if (numGuessed == display.numGenerator.getRandomNum() && !hintText.equals("")) {
+            resultText.setText("Good job, cheater.");
+            guessButton.setEnabled(false);
         } else {
             resultText.setText("Congrats, you have guessed it correctly.");
             guessButton.setEnabled(false);
         }
-
     }
 
+    private void hint() {
+        hintButton = new JButton("Hint");
+        hintButton.setBounds(145,400, 100, 25);
+        panel.add(hintButton);
+
+        hintButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                hintText.setWrapStyleWord(true);
+                hintText.setLineWrap(true);
+                hintText.setOpaque(false);
+                hintText.setEditable(false);
+                hintText.setFocusable(false);
+                hintText.setBounds(155, 430, 250, 25);
+                panel.add(hintText);
+                hintText.setText("Answer: " + display.numGenerator.getRandomNum());
+            }
+        });
+    }
 
     private void playAgain() {
         restartButton = new JButton("Play Again");
@@ -138,6 +163,7 @@ public class GUI implements ActionListener {
                 display.logic.setCount(0);
                 guessButton.setEnabled(true);
                 resultText.setText("");
+                hintText.setText("");
                 numOfGuessesLabel.setText("Number of Guesses: 0");
             }
         });
