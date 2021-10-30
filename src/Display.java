@@ -52,6 +52,22 @@ public class Display {
 
     }
 
+    public int enterAGuessForGUI(String guess) {
+        int numGuessed = 0;
+        boolean isValid = false;
+        while (!isValid) {
+            try {
+                numGuessed = validator.validRange(numGuessed);
+                numGuessed = Integer.parseInt(guess); // 0
+                isValid = true;
+            } catch (NumberFormatException n) {
+                System.out.println("error");
+                guess = "0";
+            }
+        }
+        return numGuessed;
+
+    }
     private void result() {
         while (guess != numGenerator.randomNum) {
             logic.biggerOrSmaller(numGenerator.randomNum, guess);

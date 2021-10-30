@@ -20,6 +20,7 @@ public class GUI implements ActionListener {
     private static JTextArea hintText = new JTextArea("");
     private int numGuessed;
     private static JButton hintButton;
+    private static JTextArea errorText;
 
     public GUI() {
         display = new Display();
@@ -81,6 +82,15 @@ public class GUI implements ActionListener {
         promptText.setBounds(75, 150, 150,25);
         panel.add(promptText);
 
+//        errorText = new JTextArea("");
+//        errorText.setWrapStyleWord(true);
+//        errorText.setLineWrap(true);
+//        errorText.setOpaque(false);
+//        errorText.setEditable(false);
+//        errorText.setFocusable(false);
+//        errorText.setBounds(75, 150, 150,25);
+//        panel.add(promptText);
+
         guessButton = new JButton("Guess");
         guessField = new JTextField();
         guessField.setBounds(205, 145, 100, 25);
@@ -97,6 +107,25 @@ public class GUI implements ActionListener {
         panel.add(numOfGuessesLabel);
     }
 
+    public int validEntry () {
+
+        String s = "";
+        boolean isValid = false;
+        while (!isValid) {
+            try {
+                s = guessField.getText();
+                numGuessed = Integer.parseInt(s);
+                isValid = true;
+            } catch (NumberFormatException e) {
+                resultText.setText("Enter a valid entry");
+                guessField.setText("0");
+
+            }
+        }
+        return numGuessed;
+
+    }
+
 
     private void results() {
         resultText.setWrapStyleWord(true);
@@ -106,6 +135,11 @@ public class GUI implements ActionListener {
         resultText.setFocusable(false);
         resultText.setBounds(75, 255, 250, 100);
         panel.add(resultText);
+
+        //numGuessed = validEntry(guessField.getText());
+        numGuessed = validEntry();
+        //numGuessed = Integer.parseInt(guessField.getText());
+
 
         if (numGuessed > display.numGenerator.getRandomNum()) {
             resultText.setText("Your guess is incorrect, my number is smaller. Let's try again.");
@@ -193,7 +227,7 @@ public class GUI implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         resultText.setText("");
-        numGuessed = Integer.parseInt(guessField.getText());
+        //numGuessed = Integer.parseInt(guessField.getText());
         results();
         count(display.logic.numberOfGuesses());
 
