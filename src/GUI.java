@@ -4,7 +4,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-//TODO - TRy catch for invalid entry
+//TODO - update code for when char is entered instead of int (update guess count and result message)
+//TODO - If invalid entry - clear textbox
+//TODO - create constant/static variable for beg range and end range
+//TODO - check to make sure the guessed number is in the right range
+//TODO - alert user if number has already been entered (ArrayList or something like that)
 
 public class GUI implements ActionListener {
     //when to do static vs non static
@@ -15,12 +19,11 @@ public class GUI implements ActionListener {
     private static JButton restartButton;
     private static JButton quitButton;
     private static JLabel numOfGuessesLabel;
-    private JTextField guessField;
+    private static JTextField guessField;
     private static JTextArea resultText = new JTextArea("");
     private static JTextArea hintText = new JTextArea("");
     private int numGuessed;
     private static JButton hintButton;
-    private static JTextArea errorText;
 
     public GUI() {
         display = new Display();
@@ -82,15 +85,6 @@ public class GUI implements ActionListener {
         promptText.setBounds(75, 150, 150,25);
         panel.add(promptText);
 
-//        errorText = new JTextArea("");
-//        errorText.setWrapStyleWord(true);
-//        errorText.setLineWrap(true);
-//        errorText.setOpaque(false);
-//        errorText.setEditable(false);
-//        errorText.setFocusable(false);
-//        errorText.setBounds(75, 150, 150,25);
-//        panel.add(promptText);
-
         guessButton = new JButton("Guess");
         guessField = new JTextField();
         guessField.setBounds(205, 145, 100, 25);
@@ -107,25 +101,35 @@ public class GUI implements ActionListener {
         panel.add(numOfGuessesLabel);
     }
 
-    public int validEntry () {
+    private int validEntry () {
 
         String s = "";
-        boolean isValid = false;
-        while (!isValid) {
-            try {
-                s = guessField.getText();
-                numGuessed = Integer.parseInt(s);
-                isValid = true;
-            } catch (NumberFormatException e) {
-                resultText.setText("Enter a valid entry");
-                guessField.setText("0");
 
+        try {
+            s = guessField.getText();
+            numGuessed = Integer.parseInt(s);
+            if (!isNumInRange(numGuessed)) {
+                JOptionPane.showMessageDialog(null, "Enter a valid entry");
+                numGuessed = -1;
             }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Enter a valid entry");
+            guessField.getText();
+            System.out.println("error");
+            numGuessed = -1;
+            //TODO - create a new option in results for invalid entries
         }
+
         return numGuessed;
 
     }
 
+    private boolean isNumInRange(int numGuessed) {
+        if (numGuessed <= 100 && numGuessed >= 0) {
+            return true;
+        }
+        return false;
+    }
 
     private void results() {
         resultText.setWrapStyleWord(true);
@@ -221,7 +225,6 @@ public class GUI implements ActionListener {
 
     private void count(int numOfGuesses) {
         numOfGuessesLabel.setText("Number of Guesses: " + numOfGuesses);
-
     }
 
     @Override

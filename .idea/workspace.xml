@@ -8,10 +8,8 @@
       <change beforePath="$PROJECT_DIR$/out/production/NumberGuessingGame/GUI$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/NumberGuessingGame/GUI$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/NumberGuessingGame/GUI$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/NumberGuessingGame/GUI$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/NumberGuessingGame/GUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/NumberGuessingGame/GUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/NumberGuessingGame/NumberGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/NumberGuessingGame/NumberGenerator.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Display.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Validator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Validator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,17 +92,6 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/GUI.java</url>
-          <line>118</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/NumberGuessingGame$Main.ic" NAME="Main Coverage Results" MODIFIED="1632103478777" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

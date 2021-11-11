@@ -23,13 +23,13 @@ public class Display {
 
     public void intro() {
         System.out.println("Welcome to the random number game. " +
-                "I have selected number between 1 and 100. " +
+                "I have selected number between 0 and 100. " +
                 "Let's see if you can guess it.");
     }
 
     public String introReturnStr() {
         String intro = "Welcome to the random number game. " +
-                "I have selected number between 1 and 100. " +
+                "I have selected number between 0 and 100. " +
                 "Let's see if you can guess it.";
         return intro;
     }

@@ -4,7 +4,8 @@ public class NumberGenerator {
 
     //static int randomNum;
     int randomNum;
-
+    int begRange;
+    int endRange;
 
     public int getRandomNum() {
         return randomNum;
