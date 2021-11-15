@@ -3,12 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="375edd35-24a8-4e98-87f1-9c50d51cbd9b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/NumberGuessingGame/Display.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/NumberGuessingGame/Display.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/NumberGuessingGame/GUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/NumberGuessingGame/GUI$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/NumberGuessingGame/GUI$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/NumberGuessingGame/GUI$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/NumberGuessingGame/GUI$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/NumberGuessingGame/GUI$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/NumberGuessingGame/GUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/NumberGuessingGame/GUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Display.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NumberGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NumberGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Validator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Validator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

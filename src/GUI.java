@@ -4,10 +4,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-//TODO - update code for when char is entered instead of int (update guess count and result message)
 //TODO - If invalid entry - clear textbox
-//TODO - create constant/static variable for beg range and end range
-//TODO - check to make sure the guessed number is in the right range
 //TODO - alert user if number has already been entered (ArrayList or something like that)
 
 public class GUI implements ActionListener {
@@ -101,18 +98,16 @@ public class GUI implements ActionListener {
     }
 
     private int validEntry () {
-
         String s = "";
-
         try {
             s = guessField.getText();
             numGuessed = Integer.parseInt(s);
             if (!isNumInRange(numGuessed)) {
-                JOptionPane.showMessageDialog(null, "Enter a valid entry");
+                errorMessage();
                 numGuessed = -1;
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Enter a valid entry");
+            errorMessage();
             guessField.getText();
             System.out.println("error");
             numGuessed = -1;
@@ -121,6 +116,10 @@ public class GUI implements ActionListener {
 
         return numGuessed;
 
+    }
+
+    private void errorMessage() {
+        JOptionPane.showMessageDialog(null, "That number is not in range, please enter a valid entry");
     }
 
     private boolean isNumInRange(int numGuessed) {

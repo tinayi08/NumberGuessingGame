@@ -23,14 +23,16 @@ public class Display {
 
     public void intro() {
         System.out.println("Welcome to the random number game. " +
-                "I have selected number between 0 and 100. " +
-                "Let's see if you can guess it.");
+                "I have selected number between " + numGenerator.getBegRange() +
+                " and " + numGenerator.getEndRange() +
+                ". Let's see if you can guess it.");
     }
 
     public String introReturnStr() {
         String intro = "Welcome to the random number game. " +
-                "I have selected number between 0 and 100. " +
-                "Let's see if you can guess it.";
+                "I have selected number between " + numGenerator.getBegRange() +
+                " and " + numGenerator.getEndRange() +
+                ". Let's see if you can guess it.";
         return intro;
     }
 
@@ -41,7 +43,7 @@ public class Display {
         while (!isValid) {
             try {
                 guess = scan.nextInt();
-                this.guess = validator.validRange(guess);
+                this.guess = validator.validRange(guess, numGenerator.getBegRange(), numGenerator.getEndRange());
                 isValid = true;
             } catch (InputMismatchException e) {
                 System.out.println("Please enter a valid entry:");
@@ -52,22 +54,6 @@ public class Display {
 
     }
 
-    public int enterAGuessForGUI(String guess) {
-        int numGuessed = 0;
-        boolean isValid = false;
-        while (!isValid) {
-            try {
-                numGuessed = validator.validRange(numGuessed);
-                numGuessed = Integer.parseInt(guess); // 0
-                isValid = true;
-            } catch (NumberFormatException n) {
-                System.out.println("error");
-                guess = "0";
-            }
-        }
-        return numGuessed;
-
-    }
     private void result() {
         while (guess != numGenerator.randomNum) {
             logic.biggerOrSmaller(numGenerator.randomNum, guess);
