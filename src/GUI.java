@@ -95,7 +95,6 @@ public class GUI implements ActionListener {
     }
 
     private void numOfGuessesSetUp() {
-        //guessButton.addActionListener(this);
         numOfGuessesLabel = new JLabel("Number of Guesses: 0");
         numOfGuessesLabel.setBounds(125, 225, 250, 25);
         panel.add(numOfGuessesLabel);
@@ -117,7 +116,7 @@ public class GUI implements ActionListener {
             guessField.getText();
             System.out.println("error");
             numGuessed = -1;
-            //TODO - create a new option in results for invalid entries
+
         }
 
         return numGuessed;
@@ -140,12 +139,11 @@ public class GUI implements ActionListener {
         resultText.setBounds(75, 255, 250, 100);
         panel.add(resultText);
 
-        //numGuessed = validEntry(guessField.getText());
         numGuessed = validEntry();
-        //numGuessed = Integer.parseInt(guessField.getText());
 
-
-        if (numGuessed > display.numGenerator.getRandomNum()) {
+        if (numGuessed == -1) {
+            resultText.setText("");
+        } else if (numGuessed > display.numGenerator.getRandomNum()) {
             resultText.setText("Your guess is incorrect, my number is smaller. Let's try again.");
         } else if (numGuessed < display.numGenerator.getRandomNum()){
             resultText.setText("Your guess is incorrect, my number is larger. Let's try again.");
@@ -230,9 +228,11 @@ public class GUI implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         resultText.setText("");
-        //numGuessed = Integer.parseInt(guessField.getText());
         results();
-        count(display.logic.numberOfGuesses());
+        if (numGuessed != -1) {
+            count(display.logic.numberOfGuesses());
+        }
+
 
     }
 }
